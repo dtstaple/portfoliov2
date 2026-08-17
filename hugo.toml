@@ -1,0 +1,22 @@
+# ─────────────────────────────────────────────────────────────
+#  EDIT THESE FIRST
+# ─────────────────────────────────────────────────────────────
+# baseURL: pick the line that matches what you do with the repo.
+baseURL = "https://davis1244.github.io/"                     # repo named davis1244.github.io
+# baseURL = "https://dstaple.github.io/"                     # if you rename your account to dstaple
+# baseURL = "https://davis1244.github.io/portfolio_hg/"      # current repo name (project subpath)
+
+languageCode = "en-us"
+title = "Davis Stapleton"
+
+# Single-page site — skip feeds/sitemaps/taxonomies we don't use.
+disableKinds = ["taxonomy", "term", "RSS", "sitemap"]
+
+[params]
+  # The little logo in the top-left.
+  monogram = "DS"
+  # Footer line.
+  author = "Davis Stapleton"
+
+[markup.goldmark.renderer]
+  unsafe = true   # lets you use raw HTML in content if you ever want to

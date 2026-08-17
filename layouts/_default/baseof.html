@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode | default "en" }}" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} — {{ .Site.Title }}{{ end }}</title>
+  {{ with .Site.Params.description }}<meta name="description" content="{{ . }}">{{ end }}
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
+
+  <!-- apply saved theme before first paint to avoid a flash -->
+  <script>
+    (function () {
+      var saved = localStorage.getItem("theme");
+      var t = saved ? saved
+        : (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      document.documentElement.setAttribute("data-theme", t);
+    })();
+  </script>
+</head>
+<body>
+  <div class="site-shell">
+    {{ partial "header.html" . }}
+    <main id="top">
+      {{ block "main" . }}{{ end }}
+    </main>
+    {{ partial "footer.html" . }}
+  </div>
+
+  <!-- lightbox overlay for zoomable images -->
+  <div class="lightbox" id="lightbox"><img src="" alt=""></div>
+
+  <script>
+    (function () {
+      var btn = document.querySelector('[data-theme-toggle]');
+      if (btn) {
+        var label = btn.querySelector('[data-theme-toggle-label]');
+        setLabel(document.documentElement.dataset.theme);
+        btn.addEventListener('click', function () {
+          var next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+          document.documentElement.dataset.theme = next;
+          localStorage.setItem('theme', next);
+          setLabel(next);
+        });
+      }
+      function setLabel(theme) {
+        if (label) label.textContent = theme === 'dark' ? '\u263E' : '\u2600';
+      }
+
+      var lb = document.getElementById('lightbox');
+      if (lb) {
+        var lbImg = lb.querySelector('img');
+        document.querySelectorAll('.zoomable').forEach(function (img) {
+          img.addEventListener('click', function () {
+            lbImg.src = img.currentSrc || img.src;
+            lbImg.alt = img.alt;
+            lb.classList.add('is-open');
+          });
+        });
+        lb.addEventListener('click', function () { lb.classList.remove('is-open'); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') lb.classList.remove('is-open');
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
