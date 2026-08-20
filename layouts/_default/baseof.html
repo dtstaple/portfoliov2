@@ -32,7 +32,10 @@
   </div>
 
   <!-- lightbox overlay for zoomable images -->
-  <div class="lightbox" id="lightbox"><img src="" alt=""></div>
+  <div class="lightbox" id="lightbox">
+    <img src="" alt="">
+    <video src="" autoplay loop muted playsinline hidden></video>
+  </div>
 
   <script>
     (function () {
@@ -54,16 +57,30 @@
       var lb = document.getElementById('lightbox');
       if (lb) {
         var lbImg = lb.querySelector('img');
-        document.querySelectorAll('.zoomable').forEach(function (img) {
-          img.addEventListener('click', function () {
-            lbImg.src = img.currentSrc || img.src;
-            lbImg.alt = img.alt;
+        var lbVid = lb.querySelector('video');
+        document.querySelectorAll('.zoomable').forEach(function (el) {
+          el.addEventListener('click', function () {
+            var isVideo = el.tagName === 'VIDEO';
+            lbImg.hidden = isVideo;
+            lbVid.hidden = !isVideo;
+            if (isVideo) {
+              lbVid.src = el.currentSrc || el.src;
+              lbVid.currentTime = el.currentTime || 0;
+              lbVid.play();
+            } else {
+              lbImg.src = el.currentSrc || el.src;
+              lbImg.alt = el.alt;
+            }
             lb.classList.add('is-open');
           });
         });
-        lb.addEventListener('click', function () { lb.classList.remove('is-open'); });
+        function closeLightbox() {
+          lb.classList.remove('is-open');
+          lbVid.pause();
+        }
+        lb.addEventListener('click', closeLightbox);
         document.addEventListener('keydown', function (e) {
-          if (e.key === 'Escape') lb.classList.remove('is-open');
+          if (e.key === 'Escape') closeLightbox();
         });
       }
     })();
