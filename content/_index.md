@@ -1,26 +1,30 @@
 ---
 name: "Davis Stapleton"
-bio: "Short bio here — who you are, what you build, what you're into."
+bio: "CS student at Syracuse University who likes building things close to the hardware. Past work includes HVAC firmware and validation in industrial automation, and automation tooling and database apps in fintech. Most of my interest is in embedded and low-level systems, though I work across backend and full-stack too."
 description: "Davis Stapleton — portfolio."
 links:
   - label: "LinkedIn"
-  - label: "GitHub"
     url: "https://www.linkedin.com/in/davisstapleton"
+  - label: "GitHub"
+    url: "https://github.com/dtstaple"
 projects:
   - title: "CampSite"
     url: "#"
-    meta: "Full-stack geospatial web app"
+    meta: "Camping trip planner"
     images:
       - src: "/other/campsite.mp4"
         poster: "/other/campsite-poster.jpg"
         zoom: true
-    description: "A planner for dispersed backcountry camping that scores candidate sites 0–100 on water, slope, trail access, land cover, legal status, and weather. Rather than just drawing the data on a map, it explains every score in plain language — \"nearest stream 408m off, plan to carry enough for the evening\" — and plans multi-day routes with Dijkstra over a trail graph built from ~334,000 OSM segments."
+    description: "A tool for planning dispersed camping trips. It scores potential sites on things like distance to water, slope, trail access, land cover, and legal status, and writes out a short explanation for each score instead of just plotting dots on a map. It also plans multi-day routes using Dijkstra over a trail graph built from about 334,000 OpenStreetMap segments."
     tags: ["React", "TypeScript", "Django", "PostGIS", "Mapbox"]
-  - title: "Project two"
+  - title: "Weather Station"
     url: "#"
-    meta: "What it is · Year"
-    description: "One or two sentences about it."
-    tags: ["Tech", "Tech"]
+    meta: "STM32 weather station"
+    images:
+      - src: "/other/wstation.png"
+      - src: "/other/wstationphys.png"
+    description: "A small weather station built on an STM32 microcontroller. It reads temperature, humidity, and pressure from a BME280 sensor over I2C, shows the readings on a TFT screen, and sends them over UART to a Python script that forwards the data to an MQTT broker so it can be viewed on a simple web dashboard."
+    tags: ["C", "STM32 HAL", "I2C/SPI", "Python", "MQTT"]
 other:
   heading: "Other Work"
   description: "A mix of smaller projects I've put together."
