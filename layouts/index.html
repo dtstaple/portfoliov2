@@ -14,6 +14,26 @@
   {{ with $p.bio }}<p class="caption">{{ . }}</p>{{ end }}
 </section>
 
+<!-- EXPERIENCE -->
+{{ with $p.experience }}
+<p class="section-label" id="experience">{{ .heading | default "Experience" }}</p>
+<section class="pane exp">
+  <ul class="exp-grid">
+    {{ range .items }}
+    <li class="exp-item">
+      <div class="exp-head">
+        {{ with .org }}<span class="exp-org">{{ . }}</span>{{ end }}
+        {{ with .dates }}<span class="exp-dates">{{ . }}</span>{{ end }}
+      </div>
+      {{ with .role }}<p class="exp-meta">{{ . }}</p>{{ end }}
+      {{ with .points }}<ul class="exp-points">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>{{ end }}
+      {{ with .tags }}<ul class="tag-row">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>{{ end }}
+    </li>
+    {{ end }}
+  </ul>
+</section>
+{{ end }}
+
 <!-- PROJECTS -->
 {{ with $p.projects }}
 <p class="section-label" id="work">Projects</p>
@@ -25,6 +45,7 @@
       <h2><a href="{{ .url | default "#" }}">{{ .title }}</a></h2>
       {{ with .meta }}<p class="item-meta">{{ . }}</p>{{ end }}
       {{ with .description }}<p>{{ . }}</p>{{ end }}
+      {{ with .results }}<p>{{ . }}</p>{{ end }}
       {{ with .tags }}<ul class="tag-row">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>{{ end }}
     </div>
     {{ with .images }}
