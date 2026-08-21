@@ -1,6 +1,6 @@
 ---
 name: "Davis Stapleton"
-bio: "CS student at Syracuse University who likes building things close to the hardware. Past work includes HVAC firmware and validation in industrial automation, and automation tooling and database apps in fintech. Most of my interest is in embedded and low-level systems, though I work across backend and full-stack too."
+bio: "I'm a CS student at Syracuse University who likes building things close to the hardware. Past work includes HVAC firmware and validation in industrial automation, and automation tooling and database apps in fintech. Most of my interest is in embedded and low-level systems, though I work across backend and full-stack too."
 description: "Davis Stapleton — portfolio."
 links:
   - label: "LinkedIn"
